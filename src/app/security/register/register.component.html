@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row no-gutter">
+        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+        <div class="col-md-8 col-lg-6 bg-warning">
+            <div class="login d-flex align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 col-lg-8 mx-auto">
+                            <h3 class="login-heading mb-4">Registreer je hier!</h3>
+                            <mat-card class="example-card">
+                                <mat-card-header>
+                                    <mat-card-title>Registreer</mat-card-title>
+                                </mat-card-header>
+                                <mat-card-content>
+                                        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" [mustMatch]="['wachtwoord', 'wachtwoordConfirmatie']"  novalidate>
+                                                <div class="form-group">
+                                                    <label for="gebruikersnaam">First Name</label>
+                                                    <input type="text" class="form-control" name="gebruikersnaam" [(ngModel)]="gebruiker.gebruikersnaam" #gebruikersnaam="ngModel" [ngClass]="{ 'is-invalid': f.submitted && gebruikersnaam.invalid }" required />
+                                                    <div *ngIf="f.submitted && gebruikersnaam.invalid" class="invalid-feedback">
+                                                        <div *ngIf="gebruikersnaam.errors.required">First Name is required</div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">Email</label>
+                                                    <input type="text" class="form-control" name="email" [(ngModel)]="gebruiker.email" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email />
+                                                    <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                                                        <div *ngIf="email.errors.required">Email is required</div>
+                                                        <div *ngIf="email.errors.email">Email must be a valid email address</div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="wachtwoord">Password</label>
+                                                    <input type="password" class="form-control" name="wachtwoord" [(ngModel)]="gebruiker.wachtwoord" #wachtwoord="ngModel" [ngClass]="{ 'is-invalid': f.submitted && wachtwoord.invalid }" required minlength="6" />
+                                                    <div *ngIf="f.submitted && wachtwoord.invalid" class="invalid-feedback">
+                                                        <div *ngIf="wachtwoord.errors.required">Password is required</div>
+                                                        <div *ngIf="wachtwoord.errors.minlength">Password must be at least 6 characters</div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="wachtwoordConfirmatie">Confirm Password</label>
+                                                    <input type="password" class="form-control" name="wachtwoordConfirmatie" [(ngModel)]="gebruiker.wachtwoordConfirmatie" #wachtwoordConfirmatie="ngModel" [ngClass]="{ 'is-invalid': f.submitted && wachtwoordConfirmatie.invalid }" required />
+                                                    <div *ngIf="f.submitted && wachtwoordConfirmatie.invalid" class="invalid-feedback">
+                                                        <div *ngIf="wachtwoordConfirmatie.errors.required">Confirm Password is required</div>
+                                                        <div *ngIf="wachtwoordConfirmatie.errors.mustMatch">Passwords must match</div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button class="btn btn-primary">Register</button>
+                                                </div>
+                                            </form>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-warning fixed-top">
+    <div class="container ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarResponsive">
+            <ul class="navbar-nav ml-auto ">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/register" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class='container-fluid'>
+    <div class="row justify-content-center" style="padding: 20px;">
+        <h1>
+            SurveyIt!
+        </h1>
+    </div>
+    <div class="row">
+        <div class='col-12 '>
+            <ngb-carousel>
+                <ng-template ngbSlide>
+                    <img src="../../assets/desk.jpg" class="img-fluid" alt="Delhi Metro">
+                    <div class="carousel-caption">
+                        <h3>Senl een beslissing nemen met je vrienden?</h3>
+                        <h2>Gebruik SurveyIt om snel een poll aan te maken!</h2>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <img src="../../assets/meeting.jpg" class="img-fluid" alt="Bangalore Metro">
+                    <div class="carousel-caption">
+                        <h3 style="color: black">Iets hier?</h3>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <img src="../../assets/idea.jpg" class="img-fluid" alt="Channai Metro">
+                    <div class="carousel-caption">
+                        <h3>Nog iets hier</h3>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+</div>
+<footer id="sticky-footer" class="py-4 bg-warning text-white-50">
+    <div class="container-footer text-center">
+        <small>Copyright &copy; Your Website</small>
+    </div>
+</footer>

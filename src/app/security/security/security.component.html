@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+    <div class="col-md-8 col-lg-6 bg-warning">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h3 class="login-heading mb-4">Welkom terug!</h3>
+              <mat-card class="example-card">
+                    <mat-card-header>
+                        <mat-card-title>Login</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <form class="example-form" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+                            <table class="example-full-width" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Gebruikersnaam" type="text" required minlength="2"
+                                                [(ngModel)]="gebruikerLogin.gebruikersnaam" name="gebruikersnaam" required>
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Wachtwoord" [(ngModel)]="gebruikerLogin.wachtwoord"
+                                                type="password" name="wachtwoord" required>
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+                            </table>
+                            <mat-card-actions>
+                                <button mat-raised-button color="primary" type="submit"
+                                    [disabled]="!loginForm.form.valid || submitted">Submit</button>
+                            </mat-card-actions>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
