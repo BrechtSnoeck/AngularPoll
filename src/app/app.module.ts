@@ -29,7 +29,7 @@ import { RegisterComponent } from './security/register/register.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: SecurityComponent },
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent},
   { path: 'contact', component: ContactComponent },
   { path: 'help', component: HelpComponent },

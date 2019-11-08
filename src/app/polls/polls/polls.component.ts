@@ -9,10 +9,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./polls.component.scss']
 })
 export class PollsComponent implements OnInit {
-  polls: Observable<Poll[]>;
+  polls: Poll[];
 
   constructor(private _pollService: PollService) {
-     this.polls = this._pollService.getPolls();
+      this._pollService.getPolls().subscribe(result => {
+       this.polls = result;
+       console.log(this.polls);
+     });
+     
    }
 
   ngOnInit() {

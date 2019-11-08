@@ -11,10 +11,7 @@ import { GebruikerRegistratie} from '../models/gebruiker-registratie.model';
 })
 export class RegisterComponent implements OnInit {
   submitted: boolean = false;
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  
   gebruiker: GebruikerRegistratie = new GebruikerRegistratie(0, "", "", "", "");
  
   constructor(private _gebruikerService: GebruikerService, private router: Router) { }

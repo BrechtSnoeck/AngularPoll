@@ -21,8 +21,13 @@ export class SecurityInterceptor implements HttpInterceptor {
             catchError(err => {
                 if (err.status === 401) {
                     this._router.navigate(['security']);
-                }
-                return throwError("unauthorized");
+                    return throwError("unauthorized");
+                } 
+                if (err.status === 400) {
+                    return throwError(err.error.message);
+                  }
+                return throwError(err);
+                
             }));
     }
 }

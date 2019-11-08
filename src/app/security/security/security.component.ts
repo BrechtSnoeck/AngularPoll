@@ -3,6 +3,8 @@ import { AuthenticateService } from '../services/authenticate.service';
 import { GebruikerLogin } from '../models/gebruiker-login.model';
 
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-security',
@@ -17,11 +19,18 @@ export class SecurityComponent implements OnInit {
 
   onSubmit() {
     this._authenticateService.authenticate(this.gebruikerLogin).subscribe(result => {
-      localStorage.setItem("token", result.token);
-      this.submitted = true;
-      this.router.navigate(["polls"]);
-      console.log(result);
-    });
+        this._authenticateService.wieIsLoggedIn = result.gebruikersnaam;
+        this._authenticateService.isLoggedin.next(result.token ? true : false);
+
+
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("naam", result.gebruikersnaam);
+        this.submitted = true;
+        this.router.navigate(["polls"]);
+
+      }, error => {
+        alert(error);
+      });
   }
 
   ngOnInit() {

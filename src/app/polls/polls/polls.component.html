@@ -1,7 +1,9 @@
-<h2>Polls:</h2>
-<ul>
-    <li *ngFor="let p of (polls | async)">{{p.naam}}</li>
-</ul>
-<button mat-raised-button color="primary" (click)="addMember()">Add a poll</button>
-<button mat-button color="accent" (click)="updateMember()">Update a poll</button>
-<button mat-raised-button color="warn" (click)="deleteMember()">Delete a poll</button>
+<div class="container-fluid">
+        <h2>Polls:</h2>
+        <ul>
+            <li *ngFor="let p of polls">{{p.naam}} {{p.pollID}}</li>
+        </ul>
+        <button mat-raised-button color="primary" (click)="addMember()">Add a poll</button>
+        <button mat-button color="accent" (click)="updateMember()">Update a poll</button>
+        <button mat-raised-button color="warn" (click)="deleteMember()">Delete a poll</button>
+</div>
