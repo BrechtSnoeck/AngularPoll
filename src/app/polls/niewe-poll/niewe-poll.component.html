@@ -1,0 +1,41 @@
+<div class="container">
+    <h1>Nieuwe Poll</h1>
+
+    <form [formGroup]="pollForm" (ngSubmit)="onSubmit()">
+
+        <div>
+            <mat-form-field>
+                <input matInput placeholder="Naam" type="text" formControlName="naam" />
+            </mat-form-field>
+        </div>
+
+        <h3>Opties</h3>
+        <div formArrayName="opties" class="mb-4">
+            <div *ngFor="let item of opties.controls; let optieIndex=index" [formGroupName]="optieIndex">
+                <mat-form-field>
+                    <input matInput placeholder="Optie" type="  text" formControlName="optie" />
+                </mat-form-field>
+                <button mat-icon-button color="warn" aria-label="Delete button" type="button"
+                    (click)="deleteOpties(optieIndex)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+            <button mat-raised-button color="primary" type="button" (click)="addOpties()">Add Optie</button>
+        </div>
+
+        <h3>Vrienden</h3>
+        <div *ngFor="let v of vrienden" class="col-md-2">
+            <label *ngIf="v.status && v.gebruikersnaamZender != naam">
+                <input  type="checkbox" [value]="v.gebruikersIDZender" (change)="onCheckChange($event)">
+                {{v.gebruikersnaamZender}}
+            </label>
+            <label *ngIf="v.status && v.gebruikersnaamOntvanger != naam">
+                    <input  type="checkbox" [value]="v.gebruikersIDOntvanger" (change)="onCheckChange($event)">
+                    {{v.gebruikersnaamOntvanger}}
+                </label>
+        </div>
+        <p><button mat-raised-button color="primary" type="submit" [disabled]="!pollForm.valid || submitted">Submit</button></p>
+    </form>
+    <button type="button" class="btn btn-info" routerLink="/polls">Back</button>
+    <!-- {{ this.pollForm.value | json }} -->
+</div>

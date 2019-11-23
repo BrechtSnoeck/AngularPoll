@@ -14,10 +14,10 @@
                               <mat-card-content>
                                       <form name="form" (ngSubmit)="loginForm.form.valid && onSubmit()" #loginForm="ngForm" novalidate>
                                               <div class="form-group">
-                                                  <label for="gebruikersnaam">First Name</label>
-                                                  <input type="text" class="form-control" name="gebruikersnaam" [(ngModel)]="gebruikerLogin.gebruikersnaam" #gebruikersnaam="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && gebruikersnaam.invalid }" required />
-                                                  <div *ngIf="loginForm.submitted && gebruikersnaam.invalid" class="invalid-feedback">
-                                                      <div *ngIf="gebruikersnaam.errors.required">First Name is required</div>
+                                                  <label for="email">Email</label>
+                                                  <input type="text" class="form-control" name="email" [(ngModel)]="gebruikerLogin.email" #email="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && email.invalid }" required />
+                                                  <div *ngIf="loginForm.submitted && email.invalid" class="invalid-feedback">
+                                                      <div *ngIf="email.errors.required">Email is required</div>
                                                   </div>
                                               </div>
                                             
@@ -34,6 +34,8 @@
                                                   <button class="btn btn-primary">Login</button>
                                               </div>
                                           </form>
+
+                                          <!-- {{ this.gebruikerLogin | json }} -->
                               </mat-card-content>
                           </mat-card>
                       </div>

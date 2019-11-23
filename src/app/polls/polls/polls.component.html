@@ -1,9 +1,129 @@
-<div class="container-fluid">
-        <h2>Polls:</h2>
-        <ul>
-            <li *ngFor="let p of polls">{{p.naam}} {{p.pollID}}</li>
-        </ul>
-        <button mat-raised-button color="primary" (click)="addMember()">Add a poll</button>
-        <button mat-button color="accent" (click)="updateMember()">Update a poll</button>
-        <button mat-raised-button color="warn" (click)="deleteMember()">Delete a poll</button>
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Portfolio Item Heading -->
+    <h1 class="my-4">Dashboard:
+        <small>Polls</small>
+    </h1>
+
+    <!-- Portfolio Item Row -->
+    <div class="row justify-content-between">
+
+        <div class="col-md-8">
+            <h3 class="my-3">Overzicht van polls</h3>
+            <h4>
+                <button type="button" class="btn btn-info mr-3" (click)="toggleFilter()">Toggle</button>
+                <span *ngIf="!gefilterd">Verberg alle ingevulde polls</span>
+                <span *ngIf="gefilterd">Toon alle polls</span>
+            </h4>
+            <div class="table-wrapper">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Naam</th>
+                        <th scope="col">Opties</th>
+                        <th scope="col">#Stemmen</th>
+                        <th scope="col">Ingevuld?</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let p of polls">
+                    <tr *ngIf="!(gefilterd && p.gestemd)" [ngClass]="{'table-info': p.gestemd==false}">
+                        <th scope="row">
+                            {{p.pollID}} <br> <br>
+                            <span *ngIf="!p.isAdmin && !p.gestemd"
+                                class="text-danger border-bottom border-top border-danger rounded p-2">Uitgenodigd!!</span>
+                        </th>
+                        <td>{{p.poll.naam}}</td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let a of p.poll.antwoorden" class="border-bottom border-dark">
+                                    {{a.optie}}
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="text-center">
+                            <ul>
+                                <li *ngFor="let a of p.poll.antwoorden" class="border-bottom border-dark">
+                                    {{a.stemmen.length}}
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <div *ngIf="p.gestemd; else nietActief">
+                                <button type="button" class="btn btn-success" (click)="bekijkPoll(p.poll)">Gestemd!</button>
+                            </div>
+                            <ng-template #nietActief>
+                                <button type="button" class="btn btn-warning" (click)="geefStem(p)">Stem nu!</button>
+                            </ng-template>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+
+        <div class="col-md-3 mt-4">
+            <div class="row card">
+                <div class="card-body text-center">
+                    <h3 class="my-3">Nieuwe Poll!</h3>
+                    <p>Selecteer de knop hieronder om een nieuwe poll aan te maken!</p>
+                    <button routerLink="/nieuwePoll" type="button" class="btn btn-warning">Maak een nieuwe poll!
+                    </button>
+                </div>
+            </div>
+            <br>
+            <div class="row card">
+                <div class="card-body ">
+                    <h3 class="my-3 text-center">Voeg een vriend toe!</h3>
+                    <p>Gerbuik het onderstaande formulier om een vriend toe te voegen met behulp van zijn/haar email!
+                    </p>
+                    <form [formGroup]="vriendForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" formControlName="email" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email moet ingevuld zijn</div>
+                                <div *ngIf="f.email.errors.email">Email moet valide zijn!</div>
+                            </div>
+                        </div>
+                        <p><button mat-raised-button color="primary" type="submit">Submit</button></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.row -->
+    <hr>
+    <!-- Related Projects Row -->
+    <h3 class="my-4">Vriendschapsverzoeken</h3>
+
+    <div class="row justify-content-end container">
+        <div *ngFor="let v of vriendschapsverzoeken">
+            <div *ngIf="v.status==false" class="col-md-3 mw-100 mb-4 card">
+                <div class="card-body">
+                    <h5 class="card-title">Nieuw verzoek!</h5>
+                    <p class="card-text"> <span class="text-primary">{{v.gebruikersnaamZender}}</span>  stuurde je een vrienschapsverzoek! <br>
+                        Bevestig met onderstaande knop het verzoek!</p>
+                    <button type="button" class="btn btn-info mr-3" (click)="Bevestig(v.relatieID, v.gebruikersIDZender)">Bevestig!</button>
+                    <button type="button" class="btn btn-info mr-3" (click)="Delete(v.relatieID)">Afwijzen!</button>
+                </div>
+            </div>
+        </div>
+            <div class="col-md-3 mw-100 mb-4 card">
+                <div class="card-body">
+                    <h5 class="card-title">Jouw Vrienden</h5>
+                    <div *ngFor="let v of vriendschapsverzoeken">
+                        <p *ngIf="v.status && v.gebruikersnaamZender != naam" class="card-text">{{v.gebruikersnaamZender}}</p>
+                        <p *ngIf="v.status && v.gebruikersnaamOntvanger != naam" class="card-text">{{v.gebruikersnaamOntvanger}}</p>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+    <!-- /.row -->
+
 </div>
+<!-- /.container -->

@@ -1,0 +1,12 @@
+<div class="container">
+        <h1 class="my-4">Poll:
+                <small>{{poll.naam}}</small>
+            </h1>
+    <div style="display: block;">
+        <canvas baseChart
+        [data]="doughnutChartData"
+        [labels]="doughnutChartLabels"
+        [chartType]="doughnutChartType"></canvas>
+    </div>
+    <button type="button" class="btn btn-info" routerLink="/polls">Back</button>
+</div>

@@ -1,5 +1,4 @@
-<!-- The content below is only a placeholder and can be replaced.-->
-<nav class="">
+<nav>
   <mat-sidenav-container class="nav-container">
     <mat-sidenav mode="side" opened="true" class="bg-white">
       <mat-nav-list>
@@ -9,26 +8,23 @@
          <div>
            <hr>
          </div>
-        <a mat-list-item routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Contact</a>
-        <a mat-list-item routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help</a>
-
-      
-        
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
+        <div id="page-container"> 
+            <div id="content-wrap">
         <nav class="navbar navbar-expand-lg navbar-light fixed-top hoogte bg-warning">
             <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapsed()" *ngIf="login">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div *ngIf="login; else inactiveDiv" class="collapse navbar-collapse " id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto ">
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login</a>
+                <div *ngIf="login; else inactiveDiv" class="collapse navbar-collapse ml-auto " id="navbarResponsive" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+                    <ul class="navbar-nav ml-auto align-items-end breedte">
+                        <li class="nav-item bg-warning breedte text-center" (click)="toggleCollapsed()">
+                            <a class="nav-link " routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item bg-warning breedte text-center" (click)="toggleCollapsed()">
                             <a class="nav-link " routerLink="/register" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Register</a>
                         </li>
                     </ul>
@@ -38,7 +34,7 @@
                         <ul class="navbar-nav ml-auto ">
                           <li class="nav-item">
                               <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" >
-                                 {{ wie }}
+                                 Hallo, {{ wie }}
                                 </button>
                                 <mat-menu #menu="matMenu">
                                   <button mat-menu-item routerLink="/polls">
@@ -57,11 +53,13 @@
             </div>
         </nav>
       <router-outlet></router-outlet>
-      <footer id="sticky-footer" class=" bg-warning">
+    </div>
+      <footer id="footer" class=" bg-warning">
           <div class="container text-center">
             <small>Copyright &copy; Brecht Snoeck</small>
           </div>
         </footer>
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </nav>

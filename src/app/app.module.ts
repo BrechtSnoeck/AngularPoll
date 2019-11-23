@@ -7,6 +7,7 @@ import { MatSidenavModule, MatListModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ChartsModule} from 'ng2-charts';
 
 //Module imports
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,8 @@ import { HelpComponent } from './help/help.component';
 import { PollsComponent } from './polls/polls/polls.component';
 import { SecurityComponent } from './security/security/security.component';
 import { RegisterComponent } from './security/register/register.component';
+import { NiewePollComponent } from './polls/niewe-poll/niewe-poll.component';
+import { AuthGuard } from './security/guards/auth.guard';
 
 
 
@@ -31,12 +34,11 @@ import { RegisterComponent } from './security/register/register.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent},
-  { path: 'contact', component: ContactComponent },
-  { path: 'help', component: HelpComponent },
-  { path: 'polls', component: PollsComponent },
+  { path: 'polls', component: PollsComponent,canActivate: [AuthGuard]},
   { path: 'security', component: SecurityComponent},
   { path: 'login', component: SecurityComponent},
-  { path: 'register', component: RegisterComponent}
+  { path: 'register', component: RegisterComponent},
+  { path: 'nieuwePoll', component: NiewePollComponent}
   ];
 
 @NgModule({
@@ -58,7 +60,8 @@ const appRoutes: Routes = [
     SecurityModule,
     HttpClientModule,
     SharedModule,
-    NgbModule 
+    NgbModule,
+    ChartsModule
   ],
   providers: [
     {

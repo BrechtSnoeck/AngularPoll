@@ -18,14 +18,13 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this._gebruikerService.addGebruiker(this.gebruiker).subscribe(result => {
-      if  (result == null) {
-        alert("Dit emailadres is al in gebruik")
-      } else {
-        this.submitted = true;
+      this.submitted = true;
       this.router.navigate(["login"]);
-      console.log(result);
-      }
-    });
+      //console.log(result);
+      
+    }, error => {
+      alert(error);}
+      );
   }
 
   ngOnInit() {

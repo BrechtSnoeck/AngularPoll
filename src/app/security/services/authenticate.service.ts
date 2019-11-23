@@ -21,4 +21,12 @@ export class AuthenticateService {
       this.wieIsLoggedIn = localStorage.getItem("naam");
     }
   }
+
+  isLoggedIn() {
+    if(localStorage.getItem("token")) {
+    return true;
+    } else {
+    return false;
+    }
+    }
 }

@@ -1,0 +1,15 @@
+<div class="container">
+        <h1>{{pollGebruiker.poll.naam}}</h1>
+        <form [formGroup]="stemForm" (ngSubmit)="onSubmit()">
+        
+                <h3>Mogelijke Opties:</h3>
+                <div *ngFor="let optie of pollGebruiker.poll.antwoorden" class="col-md-2">
+                    <label>
+                        <input type="checkbox" [value]="optie.antwoordID" (change)="onCheckChange($event)">
+                        {{optie.optie}}
+                    </label>
+                </div>
+                <p><button mat-raised-button color="primary" type="submit" [disabled]="!stemForm.valid || submitted">Submit</button></p>
+            </form>
+            <button type="button" class="btn btn-info" routerLink="/polls">Back</button>
+    </div>
