@@ -10,7 +10,7 @@ import { Relatie } from './models/relatie.model';
 
 @Injectable()
 export class PollService {
-  gekozenPollGebruiker = new BehaviorSubject(new PollGebruiker(0, 0, 0, null, null, false, false));
+  gekozenPollGebruiker = new BehaviorSubject(new PollGebruiker(0, 0, 0, null, null, false, false,true));
   gekozenPoll = new BehaviorSubject( new Poll(0,"",null,null));
   
   constructor(private http: HttpClient) { }
@@ -41,6 +41,10 @@ export class PollService {
 
   accepteerVerzoek(id: number, relatie: Relatie) {
     return this.http.put<Relatie>("https://localhost:44317/api/Relatie/action/" +  id, relatie);
+  }
+
+  archiveerPoll(id: number, pollGebruiker: PollGebruiker) {
+    return this.http.put<PollGebruiker>("https://localhost:44317/api/PollGebruiker/" +  id, pollGebruiker);
   }
 
   deleteVerzoek(relatieID: number) {

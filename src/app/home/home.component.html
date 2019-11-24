@@ -2,28 +2,28 @@
     <div class="row justify-content-center" style="padding: 20px;">
         <h1>
             SurveyIt!
-        </h1>
+        </h1>   
     </div>
     <div class="row">
         <div class='col-12 '>
             <ngb-carousel>
                 <ng-template ngbSlide>
-                    <img src="../../assets/desk.jpg" class="img-fluid" alt="Delhi Metro">
+                    <img src="../../assets/desk.jpg" class="img-fluid foto" alt="">
                     <div class="carousel-caption">
-                        <h3>Senl een beslissing nemen met je vrienden?</h3>
-                        <h2>Gebruik SurveyIt om snel een poll aan te maken!</h2>
+                        <h3>Snel een beslissing nemen met je vrienden?</h3>
+                        <h2>Gebruik SurveyIt om een poll aan te maken!</h2>
                     </div>
                 </ng-template>
                 <ng-template ngbSlide>
-                    <img src="../../assets/meeting.jpg" class="img-fluid" alt="Bangalore Metro">
+                    <img src="../../assets/meeting.jpg" class="img-fluid foto" alt="">
                     <div class="carousel-caption">
-                        <h3 style="color: black">Iets hier?</h3>
+                        <h3 *ngIf="gebruikers" class="card" style="color: black">Momenteel zijn er {{gebruikers.length}} gebruikers die al polls maken met SurveyIt!</h3>
                     </div>
                 </ng-template>
                 <ng-template ngbSlide>
-                    <img src="../../assets/idea.jpg" class="img-fluid" alt="Channai Metro">
+                    <img src="../../assets/idea.jpg" class="img-fluid foto" alt="">
                     <div class="carousel-caption">
-                        <h3>Nog iets hier</h3>
+                        <h3 *ngIf="gebruikers">In totaal zijn er al {{gebruikers[0].aantalPolls}} polls gemaakt door onze gebruikers</h3>
                     </div>
                 </ng-template>
             </ngb-carousel>

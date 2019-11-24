@@ -18,6 +18,7 @@ export class SecurityComponent implements OnInit {
 
   constructor(private _authenticateService: AuthenticateService, private router: Router) { }
 
+  // Post de gebruikerlogin naar de API als de gebruikerLogin correct is slaag dan de gegevens op in Localstorage
   onSubmit() {
     this._authenticateService.authenticate(this.gebruikerLogin).subscribe(result => {
         //console.log(result);

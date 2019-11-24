@@ -13,4 +13,8 @@ export class GebruikerService {
   addGebruiker(gebruiker: GebruikerRegistratie) {
     return this.http.post<Gebruiker>("https://localhost:44317/api/gebruiker", gebruiker);
   }
+
+  getGebruikers(): Observable<Gebruiker[]> {
+    return this.http.get<Gebruiker[]>("https://localhost:44317/api/gebruiker");
+    }
 }

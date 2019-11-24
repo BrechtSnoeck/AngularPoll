@@ -17,6 +17,7 @@ export class NiewePollComponent implements OnInit {
   naam: string;
 
   constructor(private _pollService: PollService, private fb: FormBuilder,private router: Router) {
+    //Alle vrienden ophalen van de huidige gebruiker
     this._pollService.getVriendschapverzoekenVanGebruiker().subscribe(result => {
       this.vrienden = result;
       //console.log(this.vrienden);
@@ -29,10 +30,10 @@ export class NiewePollComponent implements OnInit {
     this.pollForm = this.fb.group({
       naam: ["",Validators.required],
       opties: this.fb.array([this.fb.group({optie:['']})]),
-      vriendenIDs: new FormArray([])
+      vriendenIDs: new FormArray([], Validators.required)
     })
   }
-
+// Bij het submitten van het form wordt het pollDto ingevuld  en doorgestuurd naar de service om weg te schrijven
   onSubmit() {
     this.submitted = true;    
     this.pollDto = this.pollForm.value;
@@ -46,6 +47,7 @@ export class NiewePollComponent implements OnInit {
     });
     }
 
+    // Als er iets verandert bij de checkboxes voeg deze dan toe in de vriendenIds form array
   onCheckChange(event) {
     const formArray: FormArray = this.pollForm.get('vriendenIDs') as FormArray;
   

@@ -7,10 +7,11 @@ export class PollGebruiker {
     gebruikerID: number;
     gestemd: boolean;
     isAdmin: boolean;
+    isActief: boolean;
     poll: Poll;
     gebruiker: Gebruiker;
 
-    constructor(pollGebruikerID: number, pollID: number, gebruikerID: number, poll: Poll, gebruiker: Gebruiker, gestemd: boolean, isAdmin: boolean ) {
+    constructor(pollGebruikerID: number, pollID: number, gebruikerID: number, poll: Poll, gebruiker: Gebruiker, gestemd: boolean, isAdmin: boolean,isActief: boolean ) {
         this.pollGebruikerID = pollGebruikerID;
         this.pollID = pollID;
         this.gebruikerID = gebruikerID;
@@ -18,5 +19,6 @@ export class PollGebruiker {
         this.isAdmin = isAdmin;
         this.poll = poll;
         this.gebruiker = gebruiker;
+        this.isActief = isActief;
     }
 }

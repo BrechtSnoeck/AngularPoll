@@ -8,5 +8,8 @@
         [labels]="doughnutChartLabels"
         [chartType]="doughnutChartType"></canvas>
     </div>
+    <div *ngFor="let a of poll.antwoorden">
+        <p><strong>{{a.optie}}</strong>: Kreeg <strong>{{a.stemmen.length}}</strong> <span *ngIf="a.stemmen.length==1"> stem</span><span *ngIf="a.stemmen.length!=1"> stemmen</span>. Gegeven door<span *ngFor="let g of a.stemmen"> <strong> {{g.gebruiker.gebruikersnaam}}</strong>,</span></p>
+    </div>
     <button type="button" class="btn btn-info" routerLink="/polls">Back</button>
 </div>

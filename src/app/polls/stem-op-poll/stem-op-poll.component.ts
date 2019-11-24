@@ -26,6 +26,7 @@ export class StemOpPollComponent implements OnInit {
       })
    }
 
+   // Als er iets verandert in de checkboxes voeg deze dan toe aan de antwoordIDS formArray
    onCheckChange(event) {
     const formArray: FormArray = this.stemForm.get('antwoordIDs') as FormArray;
   
@@ -51,6 +52,7 @@ export class StemOpPollComponent implements OnInit {
     }
   }
 
+  // Als het form gesubmit wordt dan vul ik het stemDto op en verstuur ik het naar de APi
   onSubmit() {
     this.submitted = true;    
     this.stemDto = this.stemForm.value;
@@ -65,9 +67,10 @@ export class StemOpPollComponent implements OnInit {
     });
   }
 
+  // Initialiseer het stemForm
   ngOnInit() {
     this.stemForm = this.fb.group({
-      antwoordIDs: new FormArray([])
+      antwoordIDs: new FormArray([], Validators.required)
     })
   }
 

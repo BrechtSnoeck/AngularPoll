@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
  
   constructor(private _gebruikerService: GebruikerService, private router: Router) { }
 
+  //Als het form valide is post dan de gebruiker naar de API
   onSubmit() {
     this._gebruikerService.addGebruiker(this.gebruiker).subscribe(result => {
       this.submitted = true;
