@@ -15,9 +15,10 @@
                                       <form name="form" (ngSubmit)="loginForm.form.valid && onSubmit()" #loginForm="ngForm" novalidate>
                                               <div class="form-group">
                                                   <label for="email">Email</label>
-                                                  <input type="text" class="form-control" name="email" [(ngModel)]="gebruikerLogin.email" #email="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && email.invalid }" required />
+                                                  <input type="text" class="form-control" name="email" [(ngModel)]="gebruikerLogin.email" #email="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && email.invalid }" required email/>
                                                   <div *ngIf="loginForm.submitted && email.invalid" class="invalid-feedback">
                                                       <div *ngIf="email.errors.required">Email is required</div>
+                                                      <div *ngIf="email.errors.email">Email must be a valid email address</div>
                                                   </div>
                                               </div>
                                             

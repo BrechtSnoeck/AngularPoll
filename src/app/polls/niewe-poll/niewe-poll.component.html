@@ -34,7 +34,7 @@
                     {{v.gebruikersnaamOntvanger}}
                 </label>
         </div>
-        <p><button mat-raised-button color="primary" type="submit" [disabled]="!pollForm.valid || submitted">Submit</button></p>
+        <p><button mat-raised-button color="primary" type="submit" [disabled]="!pollForm.valid || submitted || opties.length<2">Submit</button></p>
     </form>
     <button type="button" class="btn btn-info" routerLink="/polls">Back</button>
     <!-- {{ this.pollForm.value | json }} -->

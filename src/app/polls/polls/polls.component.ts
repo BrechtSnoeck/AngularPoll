@@ -97,6 +97,7 @@ export class PollsComponent implements OnInit {
     //console.log(relatieId);
     this._pollService.deleteVerzoek(relatieId).subscribe(result => {
       //console.log(result);
+      this.getVriendSchapsVerzoeken();
     }, error => {
       alert(error);
     });

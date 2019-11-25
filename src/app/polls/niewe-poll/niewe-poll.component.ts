@@ -29,7 +29,7 @@ export class NiewePollComponent implements OnInit {
     /* Initiate the form structure */
     this.pollForm = this.fb.group({
       naam: ["",Validators.required],
-      opties: this.fb.array([this.fb.group({optie:['']})]),
+      opties: this.fb.array([this.fb.group({optie:['', Validators.required]})]),
       vriendenIDs: new FormArray([], Validators.required)
     })
   }

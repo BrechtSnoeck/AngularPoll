@@ -17,7 +17,7 @@ export class BekijkPollComponent implements OnInit {
   constructor(private _pollService: PollService, private router: Router) { 
     // Kijken of er uit de poll component een poll wordt opgeslagen in de pollService en deze dan laten zien in deze component
     this._pollService.gekozenPoll.subscribe(e=> {
-      console.log(e);
+      //console.log(e);
       this.poll = e;
       // Als er gerefresht wordt dan is de poll leeg -> stuur terug naar poll component
       if (this.poll.pollID == 0) {

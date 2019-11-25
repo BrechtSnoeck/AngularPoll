@@ -51,7 +51,7 @@
                         </td>
                         <td>
                             <div *ngIf="p.gestemd; else nietActief">
-                                <button type="button" class="btn btn-success" (click)="bekijkPoll(p.poll)">Gestemd!</button>
+                                <button type="button" class="btn btn-success" (click)="bekijkPoll(p.poll)">Gestemd!</button><br>
                                 <button type="button" class="btn btn-danger mt-2" (click)="archiveerPoll(p.pollGebruikerID, p)">Archiveer!</button>
                             </div>
                             <ng-template #nietActief>
